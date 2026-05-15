@@ -136,11 +136,15 @@ main {
 
 .controls {
   display: grid;
-  grid-template-columns: minmax(240px, 340px) auto minmax(0, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.8rem 1rem;
   align-items: end;
-  margin-bottom: 1.4rem;
-  padding: 1.2rem;
+  margin-bottom: 1rem;
+  padding: 0.9rem;
+}
+
+.controls > div {
+  grid-column: 1 / -1;
 }
 
 .search-label,
@@ -154,12 +158,12 @@ main {
 
 .search-label {
   display: grid;
-  gap: 0.55rem;
+  gap: 0.38rem;
 }
 
 #search-input {
   width: 100%;
-  min-height: 48px;
+  min-height: 42px;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: var(--surface-strong);
@@ -174,14 +178,14 @@ main {
 }
 
 .filter-title {
-  margin-bottom: 0.55rem;
+  margin-bottom: 0.4rem;
 }
 
 .sort-toggle {
   display: inline-flex;
   gap: 0.62rem;
   align-items: center;
-  min-height: 48px;
+  min-height: 42px;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: var(--surface-strong);
@@ -228,7 +232,7 @@ main {
 .page-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.55rem;
+  gap: 0.42rem;
 }
 
 .category-button,
@@ -249,8 +253,8 @@ main {
   display: inline-flex;
   gap: 0.45rem;
   align-items: center;
-  min-height: 38px;
-  padding: 0.48rem 0.78rem;
+  min-height: 34px;
+  padding: 0.38rem 0.68rem;
 }
 
 .category-button span {
