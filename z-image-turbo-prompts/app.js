@@ -390,7 +390,7 @@
     var copyButton = document.createElement("button");
     copyButton.type = "button";
     copyButton.className = "copy-prompt-button";
-    copyButton.textContent = "⧉";
+    copyButton.textContent = "Copy";
     copyButton.title = "Copy prompt";
     copyButton.setAttribute("aria-label", "Copy prompt for " + item.title);
     copyButton.addEventListener("click", function () {
@@ -646,7 +646,7 @@
       ? activeVersion.text
       : "No prompt available.";
     nodes.modalPromptPanel.scrollTop = 0;
-    nodes.modalCopyPrompt.textContent = "Copy";
+    nodes.modalCopyPrompt.textContent = "Copy prompt";
   }
 
   function getCopyPrompt(item) {
@@ -668,7 +668,7 @@
 
     copyText(text).then(function () {
       var originalText = button.textContent;
-      button.textContent = "✓";
+      button.textContent = "Copied";
       window.setTimeout(function () {
         button.textContent = originalText;
       }, 1200);
