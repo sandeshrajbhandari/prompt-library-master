@@ -9,16 +9,20 @@
   <body>
     <header class="hero">
       <div>
-        <p class="eyebrow">Prompt library</p>
-        <h1>Browse Z-Image prompts by category and tag</h1>
+        <p class="eyebrow">Z-Image prompt library</p>
+        <h1>Z-Image gallery prompts, searchable by category and tag</h1>
         <p class="intro">
-          Hover an image to preview its prompt, click it for the full prompt details,
-          and filter the collection by classification tags.
+          Images came from the
+          <a href="https://modelscope.cn/studios/Tongyi-MAI/Z-Image-Gallery" target="_blank" rel="noreferrer">ModelScope Z-Image Gallery</a>.
+          Prompts were generated locally with Qwen3.5 9B GGUF via llama.cpp, then classified for browsing.
+        </p>
+        <p class="header-links">
+          <a href="../process.html">Read the build notes</a>
         </p>
       </div>
       <div class="hero-card" aria-live="polite">
         <span id="total-count">0</span>
-        <small>prompts indexed</small>
+        <small>prompts</small>
       </div>
     </header>
 
