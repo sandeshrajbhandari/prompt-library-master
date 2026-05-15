@@ -397,13 +397,7 @@ main {
 .thumb-wrap img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transition: transform 220ms ease;
-}
-
-.image-card:hover img,
-.image-card:focus-within img {
-  transform: scale(1.04);
+  object-fit: contain;
 }
 
 .prompt-overlay {

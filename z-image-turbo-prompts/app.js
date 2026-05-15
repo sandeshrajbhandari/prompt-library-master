@@ -149,17 +149,7 @@
       categoryLabel: category.label,
       tags: tags,
       tagKeys: tagKeys,
-      searchText: [
-        title,
-        image,
-        item.fallbackImage || "",
-        prompt,
-        item.model || "",
-        category.label,
-        tags.join(" ")
-      ]
-        .join(" ")
-        .toLowerCase()
+      promptSearchText: normalizeSearchText(prompt)
     };
   }
 
@@ -326,9 +316,31 @@
     return classifiedItems.filter(function (item) {
       var matchesCategory = state.category === "all" || item.categoryKey === state.category;
       var matchesTag = state.tag === "all" || item.tagKeys.indexOf(state.tag) !== -1;
-      var matchesSearch = !state.query || item.searchText.indexOf(state.query) !== -1;
+      var matchesSearch = matchesPromptSearch(item);
       return matchesCategory && matchesTag && matchesSearch;
     }).sort(compareItems);
+  }
+
+  function matchesPromptSearch(item) {
+    var tokens = getSearchTokens(state.query);
+    if (!tokens.length) {
+      return true;
+    }
+
+    return tokens.every(function (token) {
+      return item.promptSearchText.indexOf(token) !== -1;
+    });
+  }
+
+  function getSearchTokens(query) {
+    return normalizeSearchText(query).split(" ").filter(Boolean);
+  }
+
+  function normalizeSearchText(value) {
+    return String(value || "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, " ")
+      .trim();
   }
 
   function compareItems(a, b) {

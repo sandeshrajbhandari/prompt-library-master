@@ -283,16 +283,7 @@
       revisedPromptZh: item.revised_prompt || "",
       categoryKey: category.key,
       categoryLabel: category.label,
-      searchText: [
-        title,
-        item.title || "",
-        prompt,
-        revisedPrompt,
-        item.author || "",
-        category.label
-      ]
-        .join(" ")
-        .toLowerCase()
+      promptSearchText: normalizeSearchText(revisedPrompt || prompt)
     };
   }
 
@@ -434,9 +425,31 @@
   function getFilteredItems() {
     return classifiedItems.filter(function (item) {
       var matchesCategory = state.category === "all" || item.categoryKey === state.category;
-      var matchesSearch = !state.query || item.searchText.indexOf(state.query) !== -1;
+      var matchesSearch = matchesPromptSearch(item);
       return matchesCategory && matchesSearch;
     }).sort(compareItems);
+  }
+
+  function matchesPromptSearch(item) {
+    var tokens = getSearchTokens(state.query);
+    if (!tokens.length) {
+      return true;
+    }
+
+    return tokens.every(function (token) {
+      return item.promptSearchText.indexOf(token) !== -1;
+    });
+  }
+
+  function getSearchTokens(query) {
+    return normalizeSearchText(query).split(" ").filter(Boolean);
+  }
+
+  function normalizeSearchText(value) {
+    return String(value || "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, " ")
+      .trim();
   }
 
   function compareItems(a, b) {
