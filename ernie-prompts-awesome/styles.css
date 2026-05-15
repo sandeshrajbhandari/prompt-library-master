@@ -159,6 +159,15 @@ main {
   gap: 0.38rem;
 }
 
+.search-help {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 650;
+  letter-spacing: 0;
+  line-height: 1.35;
+  text-transform: none;
+}
+
 #search-input {
   width: 100%;
   min-height: 42px;
